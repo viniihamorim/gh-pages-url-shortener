@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <title>Redirecting...</title>
@@ -10,7 +10,6 @@
       // Format: https://api.github.com/repos/{owner}/{repo}/issues/
       var GITHUB_ISSUES_LINK =
         "https://api.github.com/repos/viniihamorim/gh-pages-url-shortener/issues/";
-      var PATH_SEGMENTS_TO_SKIP = 0;
 
       /**
        * DO NOT TOUCH ANYTHING BELOW THIS COMMENT UNLESS YOU KNOW WHAT YOU ARE DOING
@@ -24,16 +23,23 @@
 
       function redirect() {
         var location = window.location;
-        var issueNumber = location.pathname.split("/")[
-          PATH_SEGMENTS_TO_SKIP + 1
-        ];
-        var homepage =
-          location.protocol +
-          "//" +
-          location.hostname +
-          (location.port ? ":" + location.port : "") +
-          "/" +
-          location.pathname.split("/")[PATH_SEGMENTS_TO_SKIP];
+        var pathname = location.pathname.replace(/^\//, ''); // Remove leading slash
+
+        // Map of paths to GitHub issue numbers
+        var pathToIssueMap = {
+          "tratamento-3-meses": 1,
+          "tratamento-5-meses": 2,
+          "tratamento-10-meses": 3,
+          // Add more paths as needed
+        };
+
+        var issueNumber = pathToIssueMap[pathname];
+        var homepage = location.protocol + "//" + location.hostname;
+
+        if (!issueNumber) {
+          location.replace(homepage);
+          return;
+        }
 
         var xhr = new XMLHttpRequest();
 

@@ -15,14 +15,16 @@
         align-items: center;
         height: 100vh;
         overflow: hidden;
+        flex-direction: column;
       }
 
       .glitch {
-        font-size: 6em;
+        font-size: 12em;
         font-weight: bold;
         color: #000;
         position: relative;
         display: inline-block;
+        margin: 0;
       }
 
       .glitch:before,
@@ -127,6 +129,26 @@
 
       .message p {
         margin: 5px 0;
+      }
+
+      @media (max-width: 768px) {
+        .glitch {
+          font-size: 8em;
+        }
+
+        .message p {
+          font-size: 1.2em;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .glitch {
+          font-size: 5em;
+        }
+
+        .message p {
+          font-size: 1em;
+        }
       }
     </style>
   </head>

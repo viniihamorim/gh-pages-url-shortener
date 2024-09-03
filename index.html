@@ -8,57 +8,135 @@
       body {
         margin: 0;
         padding: 0;
-        font-family: 'Arial', sans-serif;
-        background-color: #007bff;
+        font-family: 'Courier New', Courier, monospace;
+        background: #ffffff;
         display: flex;
         justify-content: center;
         align-items: center;
         height: 100vh;
+        overflow: hidden;
+      }
+
+      .glitch {
+        font-size: 6em;
+        font-weight: bold;
+        color: #000;
+        position: relative;
+        display: inline-block;
+      }
+
+      .glitch:before,
+      .glitch:after {
+        content: '404';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #ffffff;
+        overflow: hidden;
+        color: #000;
+        z-index: -1;
+        clip: rect(0, 900px, 0, 0);
+      }
+
+      .glitch:before {
+        left: 2px;
+        text-shadow: -2px 0 #00ff00;
+        animation: glitch 2s infinite linear alternate-reverse;
+      }
+
+      .glitch:after {
+        left: -2px;
+        text-shadow: -2px 0 #ff00ff;
+        animation: glitch 2s infinite linear alternate-reverse;
+      }
+
+      @keyframes glitch {
+        0% {
+          clip: rect(100px, 9999px, 50px, 0);
+        }
+        5% {
+          clip: rect(20px, 9999px, 75px, 0);
+        }
+        10% {
+          clip: rect(100px, 9999px, 75px, 0);
+        }
+        15% {
+          clip: rect(50px, 9999px, 20px, 0);
+        }
+        20% {
+          clip: rect(200px, 9999px, 200px, 0);
+        }
+        25% {
+          clip: rect(200px, 9999px, 50px, 0);
+        }
+        30% {
+          clip: rect(50px, 9999px, 200px, 0);
+        }
+        35% {
+          clip: rect(100px, 9999px, 100px, 0);
+        }
+        40% {
+          clip: rect(200px, 9999px, 150px, 0);
+        }
+        45% {
+          clip: rect(200px, 9999px, 50px, 0);
+        }
+        50% {
+          clip: rect(50px, 9999px, 100px, 0);
+        }
+        55% {
+          clip: rect(50px, 9999px, 20px, 0);
+        }
+        60% {
+          clip: rect(200px, 9999px, 200px, 0);
+        }
+        65% {
+          clip: rect(100px, 9999px, 150px, 0);
+        }
+        70% {
+          clip: rect(50px, 9999px, 200px, 0);
+        }
+        75% {
+          clip: rect(200px, 9999px, 50px, 0);
+        }
+        80% {
+          clip: rect(200px, 9999px, 100px, 0);
+        }
+        85% {
+          clip: rect(100px, 9999px, 75px, 0);
+        }
+        90% {
+          clip: rect(50px, 9999px, 50px, 0);
+        }
+        95% {
+          clip: rect(200px, 9999px, 200px, 0);
+        }
+        100% {
+          clip: rect(100px, 9999px, 50px, 0);
+        }
+      }
+
+      .message {
         text-align: center;
-        color: #fff;
-      }
-
-      .container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .container img {
-        max-width: 80%;
-        height: auto;
-      }
-
-      h1 {
-        font-size: 4em;
-        margin: 20px 0;
-      }
-
-      p {
+        margin-top: 20px;
+        color: #000;
         font-size: 1.5em;
-        margin: 10px 0;
       }
 
-      @media (max-width: 768px) {
-        h1 {
-          font-size: 3em;
-        }
-
-        p {
-          font-size: 1.2em;
-        }
-
-        .container img {
-          max-width: 100%;
-        }
+      .message p {
+        margin: 5px 0;
       }
     </style>
   </head>
   <body>
-    <div class="container">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHAAAAB4CAMAAADp2FJAAAAAY1BMVEX///+VlZWQkJCioqLJycmZmZmTk5Pj4+P39/fOzs7e3t7Hx8fz8/OcnJw4ODgNDQ2Li4tycnIjIyMjIyM/Pz+8vLwiIiI5OTl8fHzc3Nyzs7Nra2u9vb2tra0eHh6MjIyf3i1eAAAB8UlEQVRoge2ab1PbIBSGBWnTXcRRFzjK/v8fuG1gpoAiMHZPzp3bTXp4RwiXwExLRLrD6/Hv08Mlv00eoZ2AmMG5lvFRBOF6qzTYkRfW5NZHRVwHy2pBE+3dHRqaMEsV8G8tTcLFHQKFa/xZaMfh+IYDA9HhKxWxFOFc8NxToRvwCXHFgJqakUUTgC6Zgw5DjkkT5TpgeqkFOEbFekNLKSOgnQ2BqgkHa24yLEnkrv4O5VGAvM0Dj5KoVuRzov9L5TL2EKqKwShJW8bDQxFnJqSxMQbxYbGpBGQl6KKcBiiOCXgDLBdJKf0Ol7RQ4YUVAMRX5CEdPYXs3x9FYU5wwV3waNidSGNHgFdZBhPyiVds1TIaegLeGAkKPjgpSBtm5t0DReaJEDzgRiRlrbMAMMI5+S7KeYzPR6kxAjR9RDcLGK7OT2CGWIQbo3YRVgDGu3xlGm6uSaPDBIMScgswvNgPKHyeagDCNxN4TGtTgTysxrWbMw9PLm1AwvXlMhnhg8MZAZhqKE3Hyf6R5PMGC02fq+xxlIEzIItH5v+hxWGKOoU6gQuLE+ihS6AYlCU47VjxqqFeRiPBVKMOH0ZhHEmGTUd6IZxMmb5eREZaCdeIUiIMo5XLz1TQlVZQKDbGcOUMIKgjxkEKGi1PhE2cMTTyYoQUL1CB6HETPczZzDhn9mEhYo4ioHDNohRIuO5RIKECVeNeKm9uEqggFKXqoyzUvKsDFhEjVrW0VCJ7LJDUCNiW5jhSoYoOGx7iIW0XBHT4pNgbbJo1kFXkn4hQLTfI0uQwErlmDWmK4IHGAZDsBDhG9B+fFD6NJaFbDnK2a24kyo0zOwrM4MhzvJgSBYF3J/jiH6Io5hbysMVJnZjTsvGQClPUpRkPo0CsNg+pgqzCkchIg3uHkMrIzQZHZghHRPpQhUxrCQUwTdJYOlzINLkMiZVDkxSIR5LB4ZR6RoLkpCgBNz0YSbSjCNi0G7lRRRBBXEvMi5AgHWMTKHGAHrYTFCCJbwDcqOMQXfiVRhZTc4V3OCHsCWMa8YcDdRGhh2cmQtEazBiFVU2Ojo24PzQHgrPAGTAHnAAAAAElFTkSuQmCC" alt="404" />
-      <h1>404</h1>
-      <p>Oops! Page not found.</p>
+    <div>
+      <div class="glitch">404</div>
+      <div class="message">
+        <p>Page Not Found</p>
+        <p>The page you're looking for doesn't exist.</p>
+      </div>
     </div>
   </body>
 </html>
